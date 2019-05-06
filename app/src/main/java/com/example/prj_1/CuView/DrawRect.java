@@ -45,11 +45,39 @@ public class DrawRect extends View {
         init(context);
     }
 
+    public void createScreen() {
+        point1 = new Point();
+        point1.x = 50;
+        point1.y = 20;
+
+        point2 = new Point();
+        point2.x = 150;
+        point2.y = 20;
+
+        point3 = new Point();
+        point3.x = 150;
+        point3.y = 120;
+
+        point4 = new Point();
+        point4.x = 50;
+        point4.y = 120;
+
+        // declare each ball with the ColorBall class
+        colorballs = new ArrayList<ColorBall>();
+        colorballs.add(0, new ColorBall(getContext(), R.drawable.gray_circle, point1, 0));
+        colorballs.add(1, new ColorBall(getContext(), R.drawable.gray_circle, point2, 1));
+        colorballs.add(2, new ColorBall(getContext(), R.drawable.gray_circle, point3, 2));
+        colorballs.add(3, new ColorBall(getContext(), R.drawable.gray_circle, point4, 3));
+    }
+
     private void init(Context context) {
         paint = new Paint();
         setFocusable(true); // necessary for getting the touch events
         canvas = new Canvas();
         // setting the start point for the balls
+
+        createScreen();
+    /*
         point1 = new Point();
         point1.x = 50;
         point1.y = 20;
@@ -72,12 +100,13 @@ public class DrawRect extends View {
         colorballs.add(1, new ColorBall(context, R.drawable.gray_circle, point2, 1));
         colorballs.add(2, new ColorBall(context, R.drawable.gray_circle, point3, 2));
         colorballs.add(3, new ColorBall(context, R.drawable.gray_circle, point4, 3));
+        */
     }
 
     // the method that draws the balls
     @Override
     protected void onDraw(Canvas canvas) {
-        //   canvas.drawColor(0xffff00ff); //if you want another background color
+        //  canvas.drawColor(0); //if you want another background color
 
         paint.setAntiAlias(true);
         paint.setDither(true);
