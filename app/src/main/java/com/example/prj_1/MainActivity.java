@@ -14,12 +14,15 @@ import android.widget.ImageView;
 
 import com.example.prj_1.CuView.DrawRect;
 import com.example.prj_1.ImageActions.OriginalImage;
+import com.example.prj_1.CuView.DrawRect.*;
 
 import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
 import org.opencv.core.Mat;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
+
+import static com.example.prj_1.CuView.DrawRect.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     Mat oImage, oImage2;
     static int mark = 0;
     DrawRect drawRect;
+    public static int x1, y1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,4 +143,10 @@ public class MainActivity extends AppCompatActivity {
             matImg4 = mat;
         }
     }
+
+    public void actionAny(View v){
+        DrawRect.getCoord(1);
+    }
+
+
 }

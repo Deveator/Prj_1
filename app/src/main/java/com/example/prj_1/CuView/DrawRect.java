@@ -20,16 +20,20 @@ public class DrawRect extends View {
     Point point2, point4;
     Point startMovePoint;
 
+
     /**
      * point1 and point 3 are of same group and same as point 2 and point4
      */
     int groupId = 2;
-    private ArrayList<ColorBall> colorballs;
+    public ArrayList<ColorBall> colorballs;
     // array that holds the balls
     private int balID = 0;
     // variable to know what ball is being dragged
     Paint paint;
     Canvas canvas;
+    // variables help to getX&Ycoordinates
+    public static int x1 = 1;
+    public static int y1 = 1;
 
     public DrawRect(Context context) {
         super(context);
@@ -64,11 +68,12 @@ public class DrawRect extends View {
 
         // declare each ball with the ColorBall class
         colorballs = new ArrayList<ColorBall>();
-        colorballs.add(0, new ColorBall(getContext(), R.drawable.gray_circle, point1, 0));
-        colorballs.add(1, new ColorBall(getContext(), R.drawable.gray_circle, point2, 1));
-        colorballs.add(2, new ColorBall(getContext(), R.drawable.gray_circle, point3, 2));
-        colorballs.add(3, new ColorBall(getContext(), R.drawable.gray_circle, point4, 3));
+        colorballs.add(0, new ColorBall(getContext(), R.drawable.first_dot, point1, 0));
+        colorballs.add(1, new ColorBall(getContext(), R.drawable.first_dot, point2, 1));
+        colorballs.add(2, new ColorBall(getContext(), R.drawable.first_dot, point3, 2));
+        colorballs.add(3, new ColorBall(getContext(), R.drawable.first_dot, point4, 3));
     }
+
 
     private void init(Context context) {
         paint = new Paint();
@@ -77,6 +82,8 @@ public class DrawRect extends View {
         // setting the start point for the balls
 
         createScreen();
+
+
     /*
         point1 = new Point();
         point1.x = 50;
@@ -101,6 +108,14 @@ public class DrawRect extends View {
         colorballs.add(2, new ColorBall(context, R.drawable.gray_circle, point3, 2));
         colorballs.add(3, new ColorBall(context, R.drawable.gray_circle, point4, 3));
         */
+    }
+
+    public static void getCoord(int y) {
+
+        System.out.println(x1);
+        System.out.println(y1);
+        System.out.println(y++);
+
     }
 
     // the method that draws the balls
@@ -241,6 +256,8 @@ public class DrawRect extends View {
         }
         // redraw the canvas
         invalidate();
+        x1 = point1.x;
+        y1 = point1.y;
         return true;
 
     }
