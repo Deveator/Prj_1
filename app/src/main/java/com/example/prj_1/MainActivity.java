@@ -128,6 +128,8 @@ public class MainActivity extends AppCompatActivity {
         if (mark == 0) {
             iV.setImageBitmap(bitmap);
             matImg1 = mat;
+            System.out.println(matImg1.cols() + " cols");
+            System.out.println(matImg1.rows() + " rows");
         }
 
         if (mark == 1) {
