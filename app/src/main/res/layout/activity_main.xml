@@ -16,19 +16,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            // 'adjustViewBounds' helps not to display empty places up/down/right/left image but ROI starts move slow
             <ImageView
                 android:id="@+id/imageV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <com.example.prj_1.CuView.DrawRect
+            <com.example.prj_1.CuView.OneBall
                 android:id="@+id/imageV5"
-                android:background="#0000"
-                android:scaleType="matrix"
                 android:layout_alignTop="@id/imageV"
                 android:layout_alignBottom="@id/imageV"
+                android:layout_alignStart="@id/imageV"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent" />
+
+
 
         </RelativeLayout>
 

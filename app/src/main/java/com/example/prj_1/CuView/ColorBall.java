@@ -23,6 +23,14 @@ public class ColorBall {
         mContext = context;
         this.point = point;
     }
+
+    public ColorBall(Context context, int resourceId, Point point) {
+
+        bitmap = BitmapFactory.decodeResource(context.getResources(),
+                resourceId);
+        mContext = context;
+        this.point = point;
+    }
     // method to convert 'XML' file to Bitmap
     public static Bitmap drawableToBitmap (Drawable drawable) {
         Bitmap bitmap = null;

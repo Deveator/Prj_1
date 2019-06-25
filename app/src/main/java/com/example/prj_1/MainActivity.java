@@ -7,32 +7,39 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 
 import com.example.prj_1.CuView.DrawRect;
+import com.example.prj_1.CuView.OneBall;
 import com.example.prj_1.ImageActions.OriginalImage;
 import com.example.prj_1.CuView.DrawRect.*;
 
 import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
+import org.opencv.core.CvType;
 import org.opencv.core.Mat;
+import org.opencv.core.Point;
+import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
 import static com.example.prj_1.CuView.DrawRect.*;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnTouchListener {
 
     ImageView iV, iV2, iV3, iV4;
     Button bttn, bttn2, bttn3;
     public static String path;
     Mat oImage, oImage2;
     static int mark = 0;
-    DrawRect drawRect;
+    OneBall drawRect;
     public static int x1, y1;
+    public static int widthDisp, heightDisp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +53,21 @@ public class MainActivity extends AppCompatActivity {
         bttn = findViewById(R.id.button1);
         bttn2 = findViewById(R.id.button2);
         bttn3 = findViewById(R.id.button3);
-        drawRect = findViewById(R.id.imageV5);
+          drawRect = findViewById(R.id.imageV5);
 
         System.loadLibrary("opencv_java3");
 
         if (OpenCVLoader.initDebug()) {
             System.out.println(555);
         }
+/*
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        heightDisp = displaymetrics.heightPixels;
+        widthDisp = displaymetrics.widthPixels;
+        System.out.println(heightDisp + " H");
+        System.out.println(widthDisp + " W");
+*/
     }
 
     public void openGallery(View v) {
@@ -72,12 +87,20 @@ public class MainActivity extends AppCompatActivity {
 
             path = getPath(imageUri);
 
-            oImage = OriginalImage.GetOriginalImage(path, 4, 4);
+            oImage = OriginalImage.GetOriginalImage(path, 2, 2);
             //  oImage2 = OriginalImage.GetOriginalImage(path, 4, 4);
 
             switch (mark) {
 
                 case 0:
+
+                    // try to
+                    int thickness = -1;
+                    int lineType = 8;
+                    int shift = 0;
+                    Point center = new Point(400 / 2, 400 / 2);
+                    Imgproc.circle(oImage, center, 400 / 32, new Scalar(0, 0, 255), thickness, lineType, shift);
+
                     displayImage(oImage);
                     break;
                 case 1:
@@ -128,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
         if (mark == 0) {
             iV.setImageBitmap(bitmap);
             matImg1 = mat;
+
             System.out.println(matImg1.cols() + " cols");
             System.out.println(matImg1.rows() + " rows");
         }
@@ -146,7 +170,30 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void actionAny(View v){
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+
+        int eventAction = event.getAction();
+
+        switch (eventAction) {
+            case MotionEvent.ACTION_MOVE:
+
+                int thickness = -1;
+                int lineType = 8;
+                int shift = 0;
+                Point center = new Point(event.getX(), event.getY());
+                Imgproc.circle(oImage, center, 400 / 32, new Scalar(0, 0, 255), thickness, lineType, shift);
+
+                break;
+
+        }
+
+
+        return true;
+
+    }
+
+    public void actionAny(View v) {
         DrawRect.getCoord(1);
     }
 

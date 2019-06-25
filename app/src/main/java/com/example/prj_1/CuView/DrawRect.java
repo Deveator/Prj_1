@@ -22,7 +22,7 @@ public class DrawRect extends View {
 
 
     /**
-     * point1 and point 3 are of same group and same as point 2 and point4
+     * point1 and point3 are of same group and same as point 2 and point4
      */
     int groupId = 2;
     public ArrayList<ColorBall> colorballs;
@@ -69,9 +69,9 @@ public class DrawRect extends View {
         // declare each ball with the ColorBall class
         colorballs = new ArrayList<ColorBall>();
         colorballs.add(0, new ColorBall(getContext(), R.drawable.first_dot, point1, 0));
-        colorballs.add(1, new ColorBall(getContext(), R.drawable.first_dot, point2, 1));
-        colorballs.add(2, new ColorBall(getContext(), R.drawable.first_dot, point3, 2));
-        colorballs.add(3, new ColorBall(getContext(), R.drawable.first_dot, point4, 3));
+        colorballs.add(1, new ColorBall(getContext(), R.drawable.second_dot, point2, 1));
+        colorballs.add(2, new ColorBall(getContext(), R.drawable.third_dot, point3, 2));
+        colorballs.add(3, new ColorBall(getContext(), R.drawable.forth_dot, point4, 3));
     }
 
 

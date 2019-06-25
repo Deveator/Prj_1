@@ -5,6 +5,9 @@ import org.opencv.core.Size;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
+import static com.example.prj_1.MainActivity.heightDisp;
+import static com.example.prj_1.MainActivity.widthDisp;
+
 public class OriginalImage {
 
     // method to get image in Mat format resized down 4 times from path
