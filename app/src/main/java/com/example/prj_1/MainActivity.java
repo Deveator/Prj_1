@@ -242,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void transform(View view) {
-        // get coordinate s for subMat
+        // get coordinate s for subMatco
         DrawRect.getCoord(1);
 
         // block to get coord os ROI
